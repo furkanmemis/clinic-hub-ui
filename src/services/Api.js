@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const serverUrl = process.env.REACT_APP_SERVER_BASE_URL;
+const serverUrl = "http://localhost:8080";
 
 class ApiService {
   constructor(service) {

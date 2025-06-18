@@ -2,13 +2,16 @@ import { FaRegUser } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
+import { useAuth } from "../Context/AuthContext";
 
 
 const AccountMenu = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const {logout} = useAuth();
 
   const redirectHome = () =>{
+    logout();
     navigate('/');
     setOpen(!open);
   };
