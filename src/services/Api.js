@@ -41,5 +41,7 @@ class ApiService {
 }
 
 const AuthenticationService = new ApiService("auth");
+const HospitalService = new ApiService("tenant");
 
-export { AuthenticationService };
+
+export { AuthenticationService, HospitalService };
