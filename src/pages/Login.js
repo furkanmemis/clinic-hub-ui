@@ -1,8 +1,10 @@
 import { useState } from "react";
 import InitialLogin from "../components/InitalLogin";
+import TenantLogin from "../components/TenantLogin";
 
 const Login = () => {
   const [inital, setInital] = useState(false);
+  const [tenantUsers,setTenantUser] = useState([]);
 
   return (
     <div className="flex flex-col gap-4 p-4 max-w-sm mx-auto">
@@ -14,11 +16,11 @@ const Login = () => {
 
       {!inital ? (
         <div>
-          <InitialLogin onCheck={(check) => {check ? setInital(true) : setInital(false)}} />
+          <InitialLogin onCheck={(check) => {check ? setInital(true) : setInital(false)}} onChangeTenantList={(tenantUsers) => {setTenantUser(tenantUsers)}} />
         </div>
       ) : (
         <div>
-          <p>tenant</p>
+          <TenantLogin tenantUser={tenantUsers} />
         </div>
       )}
     </div>

@@ -3,15 +3,15 @@ import {useAuth} from "../Context/AuthContext"
 
 
 
-const InitialLogin = ({onCheck}) => {
+const InitialLogin = ({onCheck, onChangeTenantList}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {login} = useAuth();
 
   const loginSystem = async () =>{
-    await login(email,password);
+    const tenantUsers = await login(email,password);
     onCheck(true);
-
+    onChangeTenantList(tenantUsers);
   };
 
   return (
