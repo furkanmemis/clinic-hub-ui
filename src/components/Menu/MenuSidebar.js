@@ -11,7 +11,7 @@ const MenuSidebar = () => {
     { title: "Menu" , path: "/menu"},
     { title: "User" , path: "/user"},
     { title: "Appointment", path: "/appointment" },
-    { title: "Hospital",path:"/" },
+    { title: "Hospital",path:"/hospital" },
     { title: "Settings",path:"/" },
   ];
 
