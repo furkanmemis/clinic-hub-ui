@@ -1,10 +1,8 @@
 
-
+import MenuManagement from "../components/Menu/MenuManagement";
 const Menu = () => {
     return(
-        <div>
-            <p>Menu</p>
-        </div>
+        <MenuManagement/>
     )
 }
 

@@ -1,11 +1,7 @@
-
+import AppoinmentManagement from "../components/Appoinment/AppoinmentManagement";
 
 const Appointment = () =>{
-    return(
-        <div>
-            <p>Appointment</p>
-        </div>
-    )
+    return(<AppoinmentManagement />)
 }
 
 export default Appointment;

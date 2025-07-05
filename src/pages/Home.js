@@ -1,11 +1,7 @@
+import HomeManagement from "../components/Home/HomeManagement";
+
 const Home = () => {
-    return(
-        <div>
-
-            <p>Home page</p>
-
-        </div>
-    )
+    return(<HomeManagement/>)
 }
 
 export default Home;
