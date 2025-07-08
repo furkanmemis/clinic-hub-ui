@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
 
 const MenuSidebar = () => {
   const [open, setOpen] = useState(true);
@@ -8,46 +10,102 @@ const MenuSidebar = () => {
 
   const sidebarContent = [
     { title: "Home", path: "/" },
-    { title: "Menu" , path: "/menu"},
-    { title: "User" , path: "/user"},
+    { title: "Menu", path: "/menu" },
+    { title: "User", path: "/user" },
     { title: "Appointment", path: "/appointment" },
-    { title: "Hospital",path:"/hospital" },
-    { title: "Settings",path:"/" },
+    { title: "Hospital", path: "/hospital" },
+    { title: "Settings", path: "/" },
   ];
 
   const navigateTo = (path) => {
     navigate(path);
-  }
+  };
+
+  const handleChangeOpen = () => {
+    setOpen(!open);
+  };
 
   return (
-    <div className={`${open ? 'w-40' : 'w-14'} bg-green-300 text-blue-700 p-4 rounded-md`}>
+    <Grid
+      container
+      size={12}
+      sx={{
+        width: open ? "100%" : "25%",
+        padding: 1,
+        backgroundColor: "darkblue",
+        borderRadius: "4px",
+      }}
+    >
       {open ? (
-        <div>
-          <div className="flex justify-between mb-4">
-            <div>
-              <p className="font-mono text-2xl">Menu</p>
-            </div>
-            <div>
-              <GiHamburgerMenu className="cursor-pointer" onClick={()=>{setOpen(!open)}} size={24} />
-            </div>
-          </div>
+        <Grid size={12}>
+          <Grid
+            size={12}
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Grid size={6}>
+              <p
+                style={{
+                  fontFamily: "monospace",
+                  fontSize: 20,
+                  color: "white",
+                }}
+              >
+                Menu
+              </p>
+            </Grid>
+            <Grid size={6} sx={{ display: "flex", justifyContent: "center" }}>
+              <IconButton sx={{ cursor: "pointer" }}>
+                <GiHamburgerMenu
+                  onClick={() => {
+                    handleChangeOpen();
+                  }}
+                  color="white"
+                  size={24}
+                />
+              </IconButton>
+            </Grid>
+          </Grid>
 
-          {sidebarContent.map((content, index) => {
-            return (
-              <div>
-                <p className="p-2 cursor-pointer" onClick={()=>{navigateTo(content.path)}} key={index}>
-                  {content.title}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+          <Grid size={12}>
+            {sidebarContent.map((content, index) => {
+              return (
+                <Grid
+                  size={12}
+                  sx={{
+                    cursor: "pointer",
+                    color: "white",
+                    mb: 2,
+                    ":hover": { backgroundColor: "white", color: "darkblue", borderRadius: "2px" },
+                  }}
+                >
+                  <p
+                    style={{ padding: 2, fontFamily: "monospace", fontSize: 14 }}
+                    onClick={() => {
+                      navigateTo(content.path);
+                    }}
+                    key={index}
+                  >
+                    {content.title}
+                  </p>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Grid>
       ) : (
-        <div>
-          <GiHamburgerMenu className="cursor-pointer" onClick={()=>{setOpen(!open)}} size={24} />
-        </div>
+        <Grid size={12} sx={{ display: "flex", justifyContent: "center" }}>
+          <IconButton sx={{ cursor: "pointer" }}>
+            <GiHamburgerMenu
+              onClick={() => {
+                handleChangeOpen();
+              }}
+              color="white"
+              size={24}
+            />
+          </IconButton>
+        </Grid>
       )}
-    </div>
+    </Grid>
   );
 };
 

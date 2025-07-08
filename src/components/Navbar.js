@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import AccountMenu from "./AccountMenu";
 import { useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Grid";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
+    const interval = setInterval(() => {
       setTime(getTime());
     }, 1000);
-  });
+
+    return () => clearInterval(interval); // Temizle
+  }, []);
 
   const redirectToAppointment = () => {
     navigate("/appointment");
@@ -29,36 +32,39 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-500 h-15 shadow-md p-3 flex justify-between">
-      <div className="text-white font-bold flex justify-start">
-        <div className="flex flex-between">
-          <p
-            className="font-mono text-2xl"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              redirectToHome();
-            }}
-          >
-            Clinic Hub
-          </p>
-          <p className="p-2">{time}</p>
-
-        </div>
-      </div>
-      <div className="flex justify-end">
-        <button
-          onClick={() => {
-            redirectToAppointment();
+    <Grid
+      container
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        backgroundColor: "darkblue",
+        borderBottom: "1px solid #ccc",
+        padding: "10px",
+      }}
+    >
+      <Grid size={6}>
+        <p
+          style={{
+            fontFamily: "monospace",
+            fontSize: 20,
+            color: "white",
+            cursor: "pointer",
+            fontWeight: "bold",
+            padding: 3
           }}
-          className="bg-blue-900 text-white p-2 rounded-md shadow-md hover:bg-blue-800"
+          onClick={redirectToHome}
         >
-          Make an Appointment
-        </button>
-      </div>
-      <div className="flex justify-end">
+          Clinic Hub
+        </p>
+      </Grid>
+
+      <Grid size={6} sx={{ display: "flex", alignItems: "center" ,justifyContent: "flex-end" }}>
         <AccountMenu />
-      </div>
-    </nav>
+      </Grid>
+    </Grid>
   );
 };
 

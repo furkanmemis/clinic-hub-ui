@@ -1,46 +1,63 @@
 import { useState } from "react";
-import {useAuth} from "../Context/AuthContext"
+import { useAuth } from "../Context/AuthContext";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
-
-
-const InitialLogin = ({onCheck, onChangeTenantList}) => {
+const InitialLogin = ({ onCheck, onChangeTenantList }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {login} = useAuth();
+  const { login } = useAuth();
 
-  const loginSystem = async () =>{
-    const tenantUsers = await login(email,password);
+  const loginSystem = async () => {
+    const tenantUsers = await login(email, password);
     onCheck(true);
     onChangeTenantList(tenantUsers);
   };
 
   return (
-    <div className="flex flex-col gap-4 p-4 max-w-sm mx-auto">
-      <input
-        type="email"
-        value={email}
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-        className="border p-2 rounded"
-      />
+<Grid
+  container
+  sx={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    height: "100vh",
+    padding: 3,
+  }}
+>
+  <Grid item sx={{ width: "100%", maxWidth: "400px" }}>
+    <TextField
+      label="Email"
+      fullWidth
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
+  </Grid>
 
-      <input
-        type="password"
-        value={password}
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-        className="border p-2 rounded"
-      />
+  <Grid item sx={{ width: "100%", maxWidth: "400px", mt: 2 }}>
+    <TextField
+      label="Password"
+      type="password"
+      fullWidth
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
+  </Grid>
 
-      <button
-        disabled={email === "" || password === ""}
-        className="bg-green-500 font-mono text-white p-2 rounded hover:bg-green-400 disabled:bg-green-200 disabled:text-black"
-        onClick={()=>{loginSystem();}}
-      >
-        Login
-      </button>
-    </div>
+  <Grid item sx={{ width: "100%", maxWidth: "400px", mt: 2 }}>
+    <Button
+      variant="contained"
+      fullWidth
+      onClick={loginSystem}
+      disabled={!email || !password}
+    >
+      Login
+    </Button>
+  </Grid>
+</Grid>
   );
 };
 
-export default InitialLogin
+export default InitialLogin;

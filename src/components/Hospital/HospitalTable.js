@@ -1,7 +1,6 @@
 import { FaEdit } from "react-icons/fa";
 
-
-const HospitalTable = () => {
+const HospitalTable = ({ hospitals }) => {
   return (
     <div>
       <table className="border-2 border-blue-700 w-full">
@@ -13,13 +12,17 @@ const HospitalTable = () => {
           </tr>
         </thead>
         <tbody className="font-bold text-center">
-          <tr>
-            <td className="w-auto">İnegöl Devlet Hastanesi</td>
-            <td className="w-auto">Ertuğrulgazi mahallesi cumhuriyet caddesi</td>
-            <td className="w-auto flex justify-center">
-                <FaEdit size={16}/>
-            </td>
-          </tr>
+          {hospitals.map((hospital, index) => {
+            return (
+              <tr key={index}>
+                <td className="w-auto">{hospital.name}</td>
+                <td className="w-auto">{hospital.UUID}</td>
+                <td className="w-auto flex justify-center">
+                  <FaEdit size={16} />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
