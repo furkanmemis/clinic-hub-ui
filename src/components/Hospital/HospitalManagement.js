@@ -33,7 +33,7 @@ const HospitalManagement = () => {
       </Grid>
       <Grid size={11} sx={{padding: 2}}>
 
-        hospital management
+        <HospitalTable hospitals={hospitals} />
 
       </Grid>
 

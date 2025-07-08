@@ -1,31 +1,59 @@
 import { FaEdit } from "react-icons/fa";
+import Grid from "@mui/material/Grid";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableCell,
+  TableRow,
+} from "@mui/material";
 
 const HospitalTable = ({ hospitals }) => {
+  const tableColumns = ["Name", "Address", "Action"];
+
   return (
-    <div>
-      <table className="border-2 border-blue-700 w-full">
-        <thead className="bg-green-400">
-          <tr className="text-blue-700 font-bold text-center">
-            <th>Name</th>
-            <th>Address</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody className="font-bold text-center">
+    <Grid container size={12}>
+      <Table>
+        <TableHead
+          style={{ backgroundColor: "darkblue", border: "2px darkblue solid" }}
+        >
+          <TableRow>
+            {tableColumns.map((column, index) => {
+              return (
+                <TableCell
+                  style={{
+                    color: "white",
+                    fontFamily: "monospace",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                  key={index}
+                >
+                  {column}
+                </TableCell>
+              );
+            })}
+          </TableRow>
+        </TableHead>
+        <TableBody style={{ border: "2px darkblue solid" }}>
           {hospitals.map((hospital, index) => {
             return (
-              <tr key={index}>
-                <td className="w-auto">{hospital.name}</td>
-                <td className="w-auto">{hospital.UUID}</td>
-                <td className="w-auto flex justify-center">
-                  <FaEdit size={16} />
-                </td>
-              </tr>
+              <TableRow>
+                <TableCell style={{ textAlign: "center" }}>
+                  {hospital.name}
+                </TableCell>
+                <TableCell style={{ textAlign: "center" }}>
+                  {hospital.UUID}
+                </TableCell>
+                <TableCell style={{ textAlign: "center" }}>
+                  <FaEdit />
+                </TableCell>
+              </TableRow>
             );
           })}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </Table>
+    </Grid>
   );
 };
 
