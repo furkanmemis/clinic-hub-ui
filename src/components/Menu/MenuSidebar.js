@@ -14,7 +14,7 @@ const MenuSidebar = () => {
     { title: "User", path: "/user" },
     { title: "Appointment", path: "/appointment" },
     { title: "Hospital", path: "/hospital" },
-    { title: "Settings", path: "/" },
+    { title: "Settings", path: "/settings" },
   ];
 
   const navigateTo = (path) => {

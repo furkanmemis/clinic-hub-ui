@@ -6,6 +6,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Menu from "../pages/Menu";
 import User from "../pages/User";
 import Hospital from "../pages/Hospital";
+import Settings from "../pages/Settings";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/menu" element={<ProtectedRoute><Menu /></ProtectedRoute>} />
       <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />
       <Route path="/hospital" element={<ProtectedRoute><Hospital /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
     </Routes>
   );
 };
