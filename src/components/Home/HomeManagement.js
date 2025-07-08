@@ -7,12 +7,11 @@ const HomeManagement = () => {
       container
       size={12}
       sx={{ display: "flex", justifyContent: "space-between" }}
-      spacing={2}
     >
       <Grid size={1}>
         <MenuSidebar/>
       </Grid>
-      <Grid size={11}>
+      <Grid size={11} sx={{padding: 2}}>
         home page içerik
       </Grid>
     </Grid>
