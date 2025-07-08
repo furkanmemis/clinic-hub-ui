@@ -39,7 +39,7 @@ const HospitalTable = ({ hospitals }) => {
         <TableBody style={{ border: "2px darkblue solid" }}>
           {hospitals.map((hospital, index) => {
             return (
-              <TableRow>
+              <TableRow key={index}>
                 <TableCell style={{ textAlign: "center" }}>
                   {hospital.name}
                 </TableCell>
