@@ -6,10 +6,11 @@ import {
   TableHead,
   TableCell,
   TableRow,
+  Tooltip,
 } from "@mui/material";
 
 const HospitalTable = ({ hospitals }) => {
-  const tableColumns = ["Name", "Address", "Action"];
+  const tableColumns = ["Hospital Name", "Admin", "Address", "Action"];
 
   return (
     <Grid container size={12}>
@@ -43,7 +44,12 @@ const HospitalTable = ({ hospitals }) => {
                   {hospital.name}
                 </TableCell>
                 <TableCell style={{ textAlign: "center" }}>
-                  {hospital.UUID}
+                  <Tooltip title={hospital.adminEmail}>
+                    {hospital.adminName + " " + hospital.adminSurname}
+                  </Tooltip>
+                </TableCell>
+                <TableCell style={{ textAlign: "center" }}>
+                  {hospital.address}
                 </TableCell>
                 <TableCell style={{ textAlign: "center" }}>
                   <FaEdit />
